@@ -14,18 +14,4 @@ export default async function handler(req, res) {
     }
   }
 
-  if (req.method === 'POST') {
-    try {
-      // Forward payload to your real server
-      await axios.post('https://planning.sandervh.nl/webhook.php', req.body, {
-        headers: { 'Content-Type': 'application/json' }
-      });
-      return res.status(200).send('Forwarded');
-    } catch (err) {
-      console.error('Forwarding failed:', err.message);
-      return res.status(500).send('Error forwarding');
-    }
-  }
-
-  return res.status(405).send('Method Not Allowed');
 }
